@@ -5,7 +5,7 @@ import { Request, NextFunction } from 'express';
 
 export const jwtMiddleware = async (req: Request, res: Express.CustomResponse, next: NextFunction): Promise<void> => {
   try {
-    // GUIDE : JWT authentication initiated for validation and to save user information
+    // NOTE : JWT authentication initiated for validation and to save user information
     const token = req.headers['x-user'] || req.cookies.token;
     if (!token) {
       return next(CustomResponse.unauthorized(ERROR_CASE.UNAUTHORIZED_USER));
