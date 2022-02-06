@@ -1,6 +1,6 @@
 import { createServer } from 'http';
 import { Configuration } from './utility/config';
-import { app } from './server';
+import { appInstance } from './server';
 
 const onListening = (): void => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -26,7 +26,7 @@ const onError = (error: any): void => {
   }
 };
 
-const server = createServer(app.app);
+const server = createServer(appInstance.app);
 
 server.listen(Configuration.PORT);
 

@@ -4,35 +4,44 @@ import { json } from 'body-parser';
 import cors from 'cors';
 import { Configuration } from './utility/config';
 import { routes } from './routes';
-import { jwtMiddleware } from './middleware/jwtMiddleware';
+import { jwtMiddleware } from './middleware/jwt-middleware';
+import { requestLimiter } from './middleware/request-limiter';
 import { Logger } from './utility/logger';
 import { SuccessResponse, ErrorResponse } from './utility/response';
 import { ApolloServer } from 'apollo-server-express';
 import { schema } from './graphql';
-import { contextUser } from './middleware/contextuser';
+import { contextUser } from './middleware/context-user';
 
 class App {
   public app: Express;
   private apolloServer: ApolloServer;
   constructor() {
     this.app = express();
-    this.apolloServer = new ApolloServer({ schema, context: contextUser });
-    this.addRoutes();
-    this.addMiddleware();
-    this.setResponseMiddlewares();
-  }
-
-  private addMiddleware(): void {
-    this.app.use(cookieParser());
-    this.app.use(json());
+    this.apolloServer = new ApolloServer({
+      schema,
+      context: contextUser,
+    });
     const corsOption = {
       origin: Configuration.REACT_APP_URL,
       credentials: true,
     };
     this.app.use(cors(corsOption));
+    this.addRoutes();
+    this.addMiddleware(corsOption);
+    this.setResponseMiddlewares();
+  }
+
+  private async addMiddleware(corsOption: { origin: string; credentials: boolean }): Promise<void> {
+    this.app.use(cookieParser());
+    this.app.use(json());
+
     this.app.use(jwtMiddleware);
-    this.apolloServer.start().then((res) => {
-      this.apolloServer.applyMiddleware({ app: this.app, path: '/graphql', cors: corsOption });
+    this.app.use(requestLimiter);
+    await this.apolloServer.start();
+    this.apolloServer.applyMiddleware({
+      app: this.app,
+      path: '/graphql',
+      cors: corsOption,
     });
   }
 
@@ -59,4 +68,4 @@ class App {
   }
 }
 
-export const app = new App();
+export const appInstance = new App();

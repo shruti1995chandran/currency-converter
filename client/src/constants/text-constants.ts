@@ -1,0 +1,16 @@
+export const TEXT_CONST = {
+  currencyCountryProjectTitle: "Currency Exchange Rate",
+  countryCodePlaceholder: "Enter Country Code",
+  defaultSEK: "SEK",
+  amountExchange: "Enter Amount",
+  countryName: "Country Name",
+  countryPopulation: "Population",
+  countryCode: "Country Code",
+  currencyCode: "Currency Code",
+  currencySymbol: "Currency Symbol",
+  currencyinSEK: "Currencey in SEK",
+  addCountrytoList: "ADD",
+  fetchConversionRate: "Fetch Conversion Rate",
+  conversionRate: "Conversion Rate",
+  isLoading: "Loading...",
+};

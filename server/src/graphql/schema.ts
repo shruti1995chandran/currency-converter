@@ -2,20 +2,25 @@ import { gql } from 'apollo-server-express';
 
 export const typeDefs = gql`
   type Query {
-    listCountries: [String]
-    countries(name: String!): [Country]
+    listCountries: [CountryInfo]
+    exchangeRatesAsPerCurrency(currencyShortName: [String!]): [ExchangeRateInfo]
   }
 
-  type Country {
+  type CountryInfo {
     name: String
     population: Int
-    currency: [Currency]
+    currencies: [CurrencyInfo]
   }
 
-  type Currency {
-    code: String
+  type CurrencyInfo {
     name: String
     symbol: String
-    exchangeRateToSEK: Float
+    shortName: String
+  }
+
+  type ExchangeRateInfo {
+    exchangeRateToMultiplier: Float
+    exchangeRateFrom: String
+    exchangeRateTo: String
   }
 `;

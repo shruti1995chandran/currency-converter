@@ -7,7 +7,7 @@ export class CustomResponse {
       status: 401,
     };
   }
-  public static excessRequest(error: string): ErrorResponse {
+  public static requestLimitReached(error: string): ErrorResponse {
     return {
       body: {
         error,
@@ -27,7 +27,7 @@ export class CustomResponse {
   public static internalServerError(): ErrorResponse {
     return {
       body: {
-        error: "Internal Server Error",
+        error: 'Internal Server Error',
       },
       status: 500,
     };

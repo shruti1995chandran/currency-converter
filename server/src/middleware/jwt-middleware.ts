@@ -1,6 +1,6 @@
 import { CustomResponse } from '../utility/response';
 import { jwt } from '../utility/jwt';
-import { ERROR_CASE } from '../utility/customMessage';
+import { ERROR_CASE } from '../utility/custom-message';
 import { Request, NextFunction } from 'express';
 
 export const jwtMiddleware = async (req: Request, res: Express.CustomResponse, next: NextFunction): Promise<void> => {
@@ -10,9 +10,11 @@ export const jwtMiddleware = async (req: Request, res: Express.CustomResponse, n
     if (!token) {
       return next(CustomResponse.unauthorized(ERROR_CASE.UNAUTHORIZED_USER));
     }
+
     const decoded = await jwt.verify(token);
+    // NOTE- This will set the user information to be used within all the middlewares
     res.locals = {
-      userInfo: decoded,
+      user: decoded,
     };
     return next();
   } catch (err) {

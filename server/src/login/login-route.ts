@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { LoginHandler } from './login-handler';
 
-const router = Router();
+const loginRouter = Router();
 
-router.get('/login', LoginHandler.login);
+loginRouter.get('/login', LoginHandler.login);
 
-export { router };
+export { loginRouter };
