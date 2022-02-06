@@ -88,7 +88,6 @@ const CountriesAddedList = ({
       currencyDifferenceMapper.set(exchangeRateFrom, exchangeRateToMultiplier);
     }
   }
-
   const data = countriesList.map<Row>(({ name, population, currencies }) => ({
     key: name,
     name,

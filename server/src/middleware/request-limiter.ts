@@ -19,7 +19,7 @@ const checkRequestExceeded = ({ data }: JWTUtility.JWTDecoded): boolean => {
     return count < +Configuration.REQUEST_LIMIT_MAX_COUNT;
   } else {
     // NOTE- Currently we will only store count for getting the number of request used by that user
-    // We can improve this rate limiter by having an object to store the IP as well and use userId and IP in conjuction
+    // We can improve this request limiter by having an object to store the IP as well and use userId and IP in conjuction
     Cache.put(data, '1', +Configuration.REQUEST_LIMIT_TIMER);
     return true;
   }

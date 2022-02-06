@@ -63,29 +63,23 @@ enter an amount in SEK and get the amount converted into local currency next to 
 
 #### Pre-requisite for running the project
 
-- Set the environment variable as follows in the `.env` or `config/index.ts`
+- Set the environment variable as follows in the `.env` or `config.ts`
 
 ```.env
 #########################FRONTEND######################
-#config location <rootDir>/client/src/config/index.ts
+#.env location <rootDir>/client/.env
 
 # URL for the API server
 API_SERVER=http://localhost:8002
 
 
 #########################BACKEND#######################
-#config location <rootDir>/server/lib/src/config/index.ts
+#config location <rootDir>/server/src/utility/config.ts
 
 # PORT to use for running the node-server
 PORT=8002
 # FIXER API key
 FIXER_API_KEY=<FIXER_API_KEY>
-
-# Request-limit time window in milliseconds
-REQUEST_LIMIT_TIMER=60000
-
-# Rate-limit counter to allow user to hit the api's only for certain number of time within the window
-REQUEST_LIMIT_MAX_COUNT=30
 
 # JWT Secret will be used to create JWT for validating the request
 JWT_SECRET=secret
@@ -99,14 +93,24 @@ REACT_APP_URL=http://localhost:3000
 # FIXER_BASE_URL
 FIXER_BASE_URL=http://data.fixer.io/api/latest
 
+
 # COUNTRIES_BASE_URL
 COUNTRIES_BASE_URL=https://restcountries.com/v3.1
+
+# Request-limit time window in milliseconds
+REQUEST_LIMIT_TIMER=60000
+
+# Request-limit counter to allow user to hit the api's only for certain number of time within the window
+REQUEST_LIMIT_MAX_COUNT=30
 
 # COUNTRIES_API_KEY
 COUNTRIES_API_KEY=<Rest country api key>
 
 # COUNTRIES_LIST_CACHE_DURATION will be used to cache allcountries for a timeperiod provided in millisecond
 COUNTRIES_LIST_CACHE_DURATION=3600000
+
+#Default Setting: CURRENCY CONVERTER DEFAULT CODE
+STATIC_CURRENCY_CONVERSION=SEK
 ```
 
 Running the project
@@ -147,10 +151,11 @@ Running the project
 #### **FROTEND**
 
 - UI
-  - Currently UI is not mobile friendly
-  - We can add some icons for countries and currencies for more interactive experience
+- Currently UI is not mobile friendly
+- At the moment, code is tuned to work with EUR alone as the API versioning (FREE) allows only EUR.
+- We can add some icons for countries and currencies for more interactive experience
 - Test cases
-  - We can add some test cases in Frontend for validating the business logic
+- We can add some test cases in Frontend for validating the business logic
 - Adding login screen and using proper authentication method
 
 #### **AUTOMATION**

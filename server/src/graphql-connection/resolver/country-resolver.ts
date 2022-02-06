@@ -60,6 +60,8 @@ export const exchangeRatesAsPerCurrency = async (
 ): Promise<CurrencyExchangeInfo[]> => {
   const promises = currencyShortName.map((name) => getCurrencyRates(name));
   const exchangeRates = await Promise.all(promises);
+  // const checkSuccess = exchangeRates && exchangeRates.some(({ success }) => !success);
+  // if (!checkSuccess || checkSuccess.length == 0) {
   if (exchangeRates && exchangeRates.some(({ success }) => !success)) {
     //console.error('Error in exchange rate', exchangeRates);
     throw new Error('Some values cannot be fetched');

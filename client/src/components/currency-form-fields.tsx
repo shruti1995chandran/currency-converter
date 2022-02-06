@@ -69,7 +69,7 @@ const CurrencyFormFields = () => {
             <Button
               type="primary"
               className="fetch-conversation-rate"
-              disabled={field.length === 0}
+              disabled={!field || field.length === 0}
               onClick={() => {
                 if (field.length === 0) {
                   message.error("Please select a country");
@@ -84,7 +84,8 @@ const CurrencyFormFields = () => {
         </Row>
       </Col>
       <Col span={24}>
-        {field.length > 0 &&
+        {field &&
+          field.length > 0 &&
           countryCurrency.length > 0 &&
           currencyDifference && (
             <CurrencyCalculation
