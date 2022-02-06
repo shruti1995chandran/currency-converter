@@ -1,6 +1,6 @@
 export class Configuration {
   public static PORT = process.env.PORT || 8002;
-  public static FIXER_API_KEY = process.env.FIXERR_API_KEY || '4ccc71cc84329b0c7c8462f88b2d082a';
+  public static FIXER_API_KEY = process.env.FIXER_API_KEY || '4ccc71cc84329b0c7c8462f88b2d082a';
   public static JWT_SECRET = process.env.JWT_SECRET || 'secret';
   public static JWT_EXPIRY = process.env.JWT_EXPIRY || 60 * 60;
   public static REACT_APP_URL = process.env.REACT_APP_URL || 'http://localhost:3000';
