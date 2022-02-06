@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { exchangeRatesAsPerCurrency, listCountries } from '../../graphql/resolver/country-resolver';
+import { exchangeRatesAsPerCurrency, listCountries } from './country-resolver';
 import { Cache } from '../../utility/cache';
 import {
   mockListCountriesAxios,

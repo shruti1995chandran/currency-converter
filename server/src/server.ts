@@ -9,7 +9,7 @@ import { requestLimiter } from './middleware/request-limiter';
 import { Logger } from './utility/logger';
 import { SuccessResponse, ErrorResponse } from './utility/response';
 import { ApolloServer } from 'apollo-server-express';
-import { resolvers, typeDefs } from './graphql';
+import { resolvers, typeDefs } from './graphql-connection';
 import { contextUser } from './middleware/context-user';
 
 class App {
