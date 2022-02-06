@@ -2,7 +2,7 @@ module.exports = {
   clearMocks: true,
   collectCoverage: true,
   collectCoverageFrom: ["**/*.ts", "!**/typings/**"],
-  testMatch: ["<rootDir>/src/**/*.spec.ts"],
+  testMatch: ["<rootDir>/src/**/login.spec.ts"],
   coveragePathIgnorePatterns: ["/node_modules/", "/dist"],
   coverageReporters: ["lcov", "text"],
   coverageThreshold: {

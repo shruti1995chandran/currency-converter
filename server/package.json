@@ -23,10 +23,9 @@
     "axios": "^0.25.0",
     "cookie-parser": "^1.4.6",
     "express": "^4.17.2",
-    "graphql-tools": "^4.0.8",
     "jsonwebtoken": "^8.5.1",
     "memory-cache": "^0.2.0",
-    "winston": "^3.5.0"
+    "winston": "^3.5.1"
   },
   "devDependencies": {
     "@types/jest": "^27.4.0",

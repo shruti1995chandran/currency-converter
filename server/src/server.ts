@@ -9,7 +9,7 @@ import { requestLimiter } from './middleware/request-limiter';
 import { Logger } from './utility/logger';
 import { SuccessResponse, ErrorResponse } from './utility/response';
 import { ApolloServer } from 'apollo-server-express';
-import { schema } from './graphql';
+import { resolvers, typeDefs } from './graphql';
 import { contextUser } from './middleware/context-user';
 
 class App {
@@ -18,7 +18,8 @@ class App {
   constructor() {
     this.app = express();
     this.apolloServer = new ApolloServer({
-      schema,
+      resolvers,
+      typeDefs,
       context: contextUser,
     });
     const corsOption = {
@@ -37,11 +38,12 @@ class App {
 
     this.app.use(jwtMiddleware);
     this.app.use(requestLimiter);
-    await this.apolloServer.start();
-    this.apolloServer.applyMiddleware({
-      app: this.app,
-      path: '/graphql',
-      cors: corsOption,
+    this.apolloServer.start().then(() => {
+      this.apolloServer.applyMiddleware({
+        app: this.app,
+        path: '/graphql',
+        cors: corsOption,
+      });
     });
   }
 

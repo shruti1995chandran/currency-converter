@@ -1,6 +1,5 @@
-import { IResolvers } from 'graphql-tools';
 import { listCountries, exchangeRatesAsPerCurrency } from './country-resolver';
-export const resolverMap: IResolvers = {
+export const resolverMap = {
   Query: {
     listCountries,
     exchangeRatesAsPerCurrency,
